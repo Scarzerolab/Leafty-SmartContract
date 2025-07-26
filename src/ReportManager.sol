@@ -3,15 +3,28 @@ pragma solidity ^0.8.20;
 
 contract ReportManager {
     enum WeatherCondition {
-        SUNNY, CLOUDY, RAINY, STORMY, WINDY, OTHER
+        SUNNY,
+        CLOUDY,
+        RAINY,
+        STORMY,
+        WINDY,
+        OTHER
     }
 
     enum SoilCondition {
-        DRY, MOIST, WET, WATERLOGGED, CRAKED
+        DRY,
+        MOIST,
+        WET,
+        WATERLOGGED,
+        CRAKED
     }
 
     enum DiseaseType {
-        NONE, LEAF_SPOTS, POWDERY_GROWTH, WILTING, OTHER
+        NONE,
+        LEAF_SPOTS,
+        POWDERY_GROWTH,
+        WILTING,
+        OTHER
     }
 
     // struktur datan
