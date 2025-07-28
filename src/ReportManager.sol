@@ -68,25 +68,21 @@ contract ReportManager {
 
     //tempat events
     event ReportSubmitted(
-        uint256 indexed reportid,
-        uint256 indexed date,
-        address indexed submitter,
-        int16 temperature,
-        bool wateredToday
+        uint256 indexed reportid, uint256 indexed date, address indexed submitter, int16 temperature, bool wateredToday
     );
     event ownershipTransferrred(address indexed previousOwner, address indexed newOwner);
 
     //error
     error Unauthorized(address signer);
 
-    modifier onlyOwner(){
-        if(msg.sender != owner){
+    modifier onlyOwner() {
+        if (msg.sender != owner) {
             revert Unauthorized(msg.sender);
         }
         _;
     }
 
-    constructor(){
+    constructor() {
         owner = msg.sender;
         reportIdCounter = 1;
     }
