@@ -89,6 +89,7 @@ contract ReportManager {
         reportIdCounter = 1;
     }
 
+    //funtion-functionnya
     function submitDailyReport(
         WeatherData memory _weather,
         CareActions memory _actions,
@@ -108,7 +109,14 @@ contract ReportManager {
             submittedBy: msg.sender
         });
 
-        // uint256 datekey = getDateKey(currentTimestamp);
-        // ntar pakek library ini "https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/blob/master/contracts/BokkyPooBahsDateTimeLibrary.sol"
+        uint256 datekey = getDateKey(currentTimestamp);
+        reportsByDate[currentReportId] = currentReportId;
+
+        //array nya
+        allReportsIds.push(currentReportId);
+
+        emit ReportSubmitted(currentReportId, datekey, msg.sender, _weather.temperature, _actions.waterToday);
+
+        reportIdCounter++;
     }
 }
