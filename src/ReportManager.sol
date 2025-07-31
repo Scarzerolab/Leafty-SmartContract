@@ -76,6 +76,7 @@ contract ReportManager {
 
     //error
     error Unauthorized(address signer);
+    error ReportDoesNotExist(uint256 reportId);
 
     modifier onlyOwner() {
         if (msg.sender != owner) {
@@ -118,5 +119,39 @@ contract ReportManager {
         emit ReportSubmitted(currentReportId, datekey, msg.sender, _weather.temperature, _actions.waterToday);
 
         reportIdCounter++;
+    }
+
+    //librarynya (untuk carik timestamp)
+    function getDateKey(uint256 timestamp) internal pure returns (uint256){
+        (uint year, uint month, uint day) = BokkyPooBahsDateTimeLibrary.timestampToDate(timestamp);
+        return year * 10000 + month * 100 + day;
+    }
+
+    function getCurrentDateKey() external view returns (uint256){
+        return getDateKey(block.timestamp);
+    }
+
+    // senin = 1, minggu = 7
+    function getDayOfWeek(uint256 timestamp) external pure returns (uint){
+        return BokkyPooBahsDateTimeLibrary.getDayOfWeek(timestamp);
+    }
+
+    function getReport(uint256 reportId) external view returns (DailyReport memory) {
+        if(reportId >= reportIdCounter || reportId == 0) {
+            revert ReportDoesNotExist(reportId);
+            return reports[reportId];
+        }
+    }
+
+    function getReportByDate(uint256 date) external view returns (DailyReport memory) {
+        uint256 reportId = reportsByDate[date];
+        if(reportId < 0){
+            revert ReportDoesNotExist(date);
+        }
+        return reports[reportId];
+    }
+
+    function getTotalReports() external view returns (uint256) {
+        return reportIdCounter - 1;
     }
 }
