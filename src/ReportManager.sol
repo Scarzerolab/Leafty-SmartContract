@@ -122,22 +122,22 @@ contract ReportManager {
     }
 
     //librarynya (untuk carik timestamp)
-    function getDateKey(uint256 timestamp) internal pure returns (uint256){
-        (uint year, uint month, uint day) = BokkyPooBahsDateTimeLibrary.timestampToDate(timestamp);
+    function getDateKey(uint256 timestamp) internal pure returns (uint256) {
+        (uint256 year, uint256 month, uint256 day) = BokkyPooBahsDateTimeLibrary.timestampToDate(timestamp);
         return year * 10000 + month * 100 + day;
     }
 
-    function getCurrentDateKey() external view returns (uint256){
+    function getCurrentDateKey() external view returns (uint256) {
         return getDateKey(block.timestamp);
     }
 
     // senin = 1, minggu = 7
-    function getDayOfWeek(uint256 timestamp) external pure returns (uint){
+    function getDayOfWeek(uint256 timestamp) external pure returns (uint256) {
         return BokkyPooBahsDateTimeLibrary.getDayOfWeek(timestamp);
     }
 
     function getReport(uint256 reportId) external view returns (DailyReport memory) {
-        if(reportId >= reportIdCounter || reportId == 0) {
+        if (reportId >= reportIdCounter || reportId == 0) {
             revert ReportDoesNotExist(reportId);
             return reports[reportId];
         }
@@ -145,7 +145,7 @@ contract ReportManager {
 
     function getReportByDate(uint256 date) external view returns (DailyReport memory) {
         uint256 reportId = reportsByDate[date];
-        if(reportId < 0){
+        if (reportId < 0) {
             revert ReportDoesNotExist(date);
         }
         return reports[reportId];
@@ -153,5 +153,24 @@ contract ReportManager {
 
     function getTotalReports() external view returns (uint256) {
         return reportIdCounter - 1;
+    }
+
+    // report batch
+    function getReportsBatch(uint256 startId, uint256 count) external view returns (DailyReport[] memory) {
+        require(startId > 0 && startId < reportIdCounter, "Invalid start Id");
+
+        uint256 endId = startId + count;
+        if (endId >= reportIdCounter) {
+            endId = reportIdCounter;
+        }
+
+        uint256 batchSize = endId - startId;
+        DailyReport[] memory batch = new DailyReport[](batchSize);
+
+        for (uint256 i = 0; i < batchSize; i++) {
+            batch[i] = reports[startId + i];
+        }
+
+        return batch;
     }
 }
