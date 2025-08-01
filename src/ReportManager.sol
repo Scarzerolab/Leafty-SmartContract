@@ -77,6 +77,7 @@ contract ReportManager {
     //error
     error Unauthorized(address signer);
     error ReportDoesNotExist(uint256 reportId);
+    error ZeroAddress(address falseAddress);
 
     modifier onlyOwner() {
         if (msg.sender != owner) {
@@ -139,8 +140,8 @@ contract ReportManager {
     function getReport(uint256 reportId) external view returns (DailyReport memory) {
         if (reportId >= reportIdCounter || reportId == 0) {
             revert ReportDoesNotExist(reportId);
-            return reports[reportId];
         }
+        return reports[reportId];
     }
 
     function getReportByDate(uint256 date) external view returns (DailyReport memory) {
@@ -172,5 +173,36 @@ contract ReportManager {
         }
 
         return batch;
+    }
+
+    function getWeatherData(uint256 reportId) external view returns (WeatherData memory) {
+        if (reportId >= reportIdCounter || reportId == 0) {
+            revert ReportDoesNotExist(reportId);
+        }
+        return reports[reportId].weather;
+    }
+
+    function getCareActions(uint256 reportId) external view returns (CareActions memory) {
+        if (reportId >= reportIdCounter || reportId == 0) {
+            revert ReportDoesNotExist(reportId);
+        }
+        return reports[reportId].actions;
+    }
+
+    function getHealthStatus(uint256 reportId) external view returns (HealthStatus memory) {
+        if (reportId >= reportIdCounter || reportId == 0) {
+            revert ReportDoesNotExist(reportId);
+        }
+        return reports[reportId].health;
+    }
+
+    //untuk transfer ownership baru
+    function transferOwnership(address newOwner) external onlyOwner {
+        if (newOwner == address(0)) {
+            revert ZeroAddress(newOwner);
+        }
+        address oldOwner = owner;
+        owner = newOwner;
+        emit ownershipTransferrred(oldOwner, newOwner);
     }
 }
