@@ -21,10 +21,7 @@ contract ReportManagerTest is Test {
         //deploy
         mainContract = new ReportManager();
 
-        testWeather = ReportManager.WeatherData({
-            temperature: 255,
-            condition: ReportManager.WeatherCondition.SUNNY
-        });
+        testWeather = ReportManager.WeatherData({temperature: 255, condition: ReportManager.WeatherCondition.SUNNY});
 
         testActions = ReportManager.CareActions({
             waterToday: true,
@@ -45,5 +42,11 @@ contract ReportManagerTest is Test {
 
     function testSubmitDailyReport() public {
         assertEq(mainContract.reportIdCounter(), 1);
+        assertEq(mainContract.getTotalReports(), 0);
+
+        mainContract.submitDailyReport(testWeather, testActions, testHealth, testNotes);
+
+        assertEq(mainContract.reportIdCounter(), 2);
+        assertEq(mainContract.getTotalReports(), 1);
     }
 }
