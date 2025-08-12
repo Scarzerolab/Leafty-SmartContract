@@ -97,7 +97,7 @@ contract ReportManager {
         CareActions memory _actions,
         HealthStatus memory _health,
         string memory _extraNotes
-    ) external onlyOwner {
+    ) external {
         uint256 currentReportId = reportIdCounter;
         uint256 currentTimestamp = block.timestamp;
 
