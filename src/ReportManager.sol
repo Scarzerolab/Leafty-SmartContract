@@ -97,7 +97,7 @@ contract ReportManager {
         CareActions memory _actions,
         HealthStatus memory _health,
         string memory _extraNotes
-    ) external {
+    ) external onlyOwner {
         uint256 currentReportId = reportIdCounter;
         uint256 currentTimestamp = block.timestamp;
 
@@ -173,6 +173,19 @@ contract ReportManager {
         }
 
         return batch;
+    }
+
+    function getReportsByIds(uint256[] calldata reportIds) external view returns (DailyReport[] memory) {
+        require(reportIds.length > 0, "Empty array");
+
+        DailyReport[] memory result = new DailyReport[](reportIds.length);
+
+        for (uint256 i = 0; i < reportIds.length; i++) {
+            require(reportIds[i] > 0 && reportIds[i] < reportIdCounter, "Invalid report ID");
+            result[i] = reports[reportIds[i]];
+        }
+
+        return result;
     }
 
     function getWeatherData(uint256 reportId) external view returns (WeatherData memory) {
