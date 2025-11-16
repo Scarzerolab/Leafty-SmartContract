@@ -6,8 +6,14 @@
 ██║     █████╗  ███████║█████╗     ██║    ╚████╔╝ 
 ██║     ██╔══╝  ██╔══██║██╔══╝     ██║     ╚██╔╝  
 ███████╗███████╗██║  ██║██║        ██║      ██║   
-╚══════╝╚══════╝╚═╝  ╚═╝╚═╝        ╚═╝      ╚═╝                                                     
+╚══════╝╚══════╝╚═╝  ╚═╝╚═╝        ╚═╝      ╚═╝   
 </pre>
+
+## Overview
+
+The ReportManager contract provides a decentralized, immutable ledger for recording daily reports related to environmental conditions, care actions, and plant/crop health status. It is ideal for tracking daily farm, garden, or other regulated environmental data.
+
+Each report is assigned a unique ID and includes structured data for weather, soil, health, and care activities, along with a timestamp and the submitting address.
 
 ## Foundry
 
