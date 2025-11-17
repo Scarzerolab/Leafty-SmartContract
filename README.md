@@ -15,6 +15,10 @@ The ReportManager contract provides a decentralized, immutable ledger for record
 
 Each report is assigned a unique ID and includes structured data for weather, soil, health, and care activities, along with a timestamp and the submitting address.
 
+## Features
+
+ - Immutable Data Storage: All reports are permanently stored on the blockchain.
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
