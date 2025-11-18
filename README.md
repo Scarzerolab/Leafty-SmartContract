@@ -19,6 +19,7 @@ Each report is assigned a unique ID and includes structured data for weather, so
 
  - Immutable Data Storage: All reports are permanently stored on the blockchain.
  - Structured Reporting: Utilizes enums and structs to enforce structured reporting on Weather, Soil, Plant Health, and Care Actions.
+ - Timestamping: Reports automatically record the submission time using `block.timestamp`
 
 ## Foundry
 
