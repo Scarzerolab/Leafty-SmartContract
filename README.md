@@ -21,6 +21,7 @@ Each report is assigned a unique ID and includes structured data for weather, so
  - Structured Reporting: Utilizes enums and structs to enforce structured reporting on Weather, Soil, Plant Health, and Care Actions.
  - Timestamping: Reports automatically record the submission time using `block.timestamp`
  - Date Key Generation: Uses the `BokkyPooBahsDateTimeLibrary` to convert timestamps into a date key (`YYYYMMDD` format) for easier querying.
+ - Owner Control: Includes a basic ownership mechanism for administrative functions like transferring ownership.
 
 ## Foundry
 
