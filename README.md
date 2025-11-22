@@ -22,6 +22,7 @@ Each report is assigned a unique ID and includes structured data for weather, so
  - Timestamping: Reports automatically record the submission time using `block.timestamp`
  - Date Key Generation: Uses the `BokkyPooBahsDateTimeLibrary` to convert timestamps into a date key (`YYYYMMDD` format) for easier querying.
  - Owner Control: Includes a basic ownership mechanism for administrative functions like transferring ownership.
+ - Flexible Data Retrieval: Allows retrieval of reports by ID, in batches, or specific data subsets (e.g., just the weather data).
 
 ## Foundry
 
