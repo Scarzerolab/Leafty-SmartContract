@@ -24,6 +24,8 @@ Each report is assigned a unique ID and includes structured data for weather, so
  - Owner Control: Includes a basic ownership mechanism for administrative functions like transferring ownership.
  - Flexible Data Retrieval: Allows retrieval of reports by ID, in batches, or specific data subsets (e.g., just the weather data).
 
+## Dependencies
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
