@@ -29,6 +29,8 @@ Each report is assigned a unique ID and includes structured data for weather, so
 This contract imports an external library for date and time utility:
 - `BokkyPooBahsDateTimeLibrary`: Used for converting Unix timestamps into a YYYYMMDD integer format (getDateKey) and for getting the day of the week.
 
+## Data Structures
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
