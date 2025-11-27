@@ -31,6 +31,10 @@ This contract imports an external library for date and time utility:
 
 ## Data Structures
 
+Type | Purpose | Available Values
+--- | --- | --- 
+WeatherCondition | General weather state | SUNNY, CLOUDY, RAINY, STORMY, WINDY, OTHER
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
